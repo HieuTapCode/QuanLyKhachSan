@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="QuanLyKhachSan1.Views.QuanLyDichVu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuanLyKhachSan1.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="GhostWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header section with title, search, and add button -->
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Title -->
+            <TextBlock Grid.Column="0" Text="Quản lý dịch vụ" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="0,0,30,0" />
+
+            <!-- Search box -->
+            <TextBox Name="txtSearch" Margin="165,0,172,0" VerticalAlignment="Center" Text="Tìm kiếm dịch vụ" Foreground="black" Grid.ColumnSpan="2" Height="28"/>
+
+            <!-- Add button -->
+            <Button Grid.Column="1" Content="Thêm" VerticalAlignment="Center" Margin="495,0,5,0" Padding="10,5" Background="DarkSlateBlue" Foreground="white" />
+        </Grid>
+
+        <!-- DataGrid section -->
+        <DataGrid Grid.Row="1" Name="dgDichVu" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding MaDichVu}" Width="Auto" />
+                <DataGridTextColumn Header="Tên dịch vụ" Binding="{Binding TenDichVu}" Width="*" />
+                <DataGridTextColumn Header="Loại dịch vụ" Binding="{Binding LoaiDichVu}" Width="*" />
+                <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGia}" Width="*" />
+                <DataGridTemplateColumn Header="Thao tác" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <!-- Edit button -->
+                                <Button Content="Sửa" Command="{Binding EditCommand}" Margin="5,0" Padding="10,5" Background="LightBlue" Foreground="Black" />
+
+                                <!-- Delete button -->
+                                <Button Content="Xóa" Command="{Binding DeleteCommand}" Margin="5,0" Padding="10,5" Background="LightCoral" Foreground="White" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
